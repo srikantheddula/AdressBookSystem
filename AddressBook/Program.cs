@@ -6,16 +6,25 @@ namespace AddressBook
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(" Add Person :");
-            int num = Convert.ToInt32(Console.ReadLine());
-            int x = 1;
-            while (x <= num)
-            {
-                AddressBookMain.AddPerson();               //adding a person count
-                x++;
-            }
-            AddressBookMain.ShowPeople();
+            Console.WriteLine("please enter a command : 1 = add,2 = remove,3 = list");
 
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            switch (num)
+            {
+                case 1:
+                    AddressBookMain.AddPerson();
+                    break;
+                case 2:
+                    AddressBookMain.RemovePerson();
+                    break;
+                case 3:
+                    AddressBookMain.ShowPeople();
+                    break;
+            }
+            Console.Read();
         }
+
     }
 }
+
