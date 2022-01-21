@@ -6,8 +6,16 @@ namespace AddressBook
     {
         static void Main(string[] args)
         {
-            AddressBookMain.AddressBook(); //calling static method From AddressBookMain
-            
+            Console.WriteLine(" Add Person :");
+            int num = Convert.ToInt32(Console.ReadLine());
+            int x = 1;
+            while (x <= num)
+            {
+                AddressBookMain.AddPerson();               //adding a person count
+                x++;
+            }
+            AddressBookMain.ShowPeople();
+
         }
     }
 }
