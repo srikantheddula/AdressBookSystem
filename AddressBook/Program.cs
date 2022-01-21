@@ -6,7 +6,8 @@ namespace AddressBook
     {
         static void Main(string[] args)
         {
-            AddressBookMain.AddressBook(); //calling static mmethod AddressBook
+            AddressBookMain.AddressBook(); //calling static method From AddressBookMain
+            
         }
     }
 }
