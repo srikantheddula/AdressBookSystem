@@ -10,14 +10,13 @@ namespace AddressBook
         /// <summary>
         /// Addressbook.
         /// </summary>
-       
         private string FirstName { get; set; }
         private string LastName { get; set; }
         private string PhoneNumber { get; set; }
         private string[] Addresses { get; set; }
 
-        public static List<AddressBookMain> persons = new List<AddressBookMain>();
-        // creating list  to store the all address of persons
+        public static Dictionary<string, AddressBookMain> People = new Dictionary<string, AddressBookMain>();
+        // creating Dictionaries for to store the all address of people
 
         public static void AddPerson()  //creating metod for a class
         {
@@ -32,18 +31,15 @@ namespace AddressBook
             Console.Write("Enter Phone Number: ");
             person.PhoneNumber = Console.ReadLine();
 
-            string[] addressArray = new string[2]; // creating Array  to store the address
             Console.Write("Enter Address 1: ");
-            addressArray[0] = Console.ReadLine();
+            string[] addresses = new string[2]; // creating Array for to store the address
+            addresses[0] = Console.ReadLine();
             Console.Write("Enter Address 2 (Optional): ");
-            addressArray[1] = Console.ReadLine();
-            person.Addresses = addressArray;
+            addresses[1] = Console.ReadLine();
+            person.Addresses = addresses;
 
-            persons.Add(person);
+            People.Add(person.FirstName, person);// adding the peoples to the Dictionaries
         }
-        /// <summary>
-        /// Displaying the Welcome message 
-        /// </summary>
         private static void PrintPerson(AddressBookMain person)
         {
             Console.WriteLine("First Name: " + person.FirstName);
@@ -55,43 +51,20 @@ namespace AddressBook
         }
         public static void ShowPeople() //This method used to show people who are present in Address book
         {
-            if (persons.Count == 0)
+            if (People.Count == 0)
             {
                 Console.WriteLine("Your address book is empty. Press any key to continue.");
                 Console.ReadKey();
                 return;
             }
             Console.WriteLine("Here are the current people in your address book:\n");
-
-            foreach (var Element in persons)
+            foreach (var Element in People.Values)
             {
                 PrintPerson(Element);
             }
+
             Console.WriteLine("\nPress any key to continue.");
             Console.ReadKey();
-        }
-        public static void RemovePerson() //this method for remove the people with respect their names
-        {
-            Console.WriteLine("Enter the first name of the person you would like to remove.");
-            string firstName = Console.ReadLine();
-            AddressBookMain person = persons.FirstOrDefault(x => x.FirstName.ToLower() == firstName.ToLower());
-
-            if (person == null)
-            {
-                Console.WriteLine("That person could not be found. Press any key to continue");
-                Console.ReadKey();
-                return;
-            }
-            Console.WriteLine("Are you sure you want to remove this person from your address book? (Y/N)");
-            PrintPerson(person);
-
-            if (Console.ReadKey().Key == ConsoleKey.Y)
-            {
-                persons.Remove(person);
-                Console.WriteLine("Person removed. Press any key to continue.");
-                Console.ReadKey();
-            }
-            Console.Read();
         }
 
     }
