@@ -8,7 +8,7 @@ namespace AddressBook
     class AddressBookMain
     {
         /// <summary>
-        /// Addresses the book.
+        /// Addressbook.
         /// </summary>
        
         private string FirstName { get; set; }
